@@ -19,15 +19,33 @@ import com.sun.syndication.io.XmlReader;
 @Entity("flux")
 public class Flux {
 	@Id ObjectId id;
+	private String website;
 	private String link;       //lien vers le flux
 	@Transient
 	private List<Item> items;  //les differents articles du flux
+	
+	
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
 	
 	public Flux() {
 		this.link=null;
 		this.items=null;
 	}
 	
+	
+	public Flux(String website, String link, List<Item> items) {
+		super();
+		this.website = website;
+		this.link = link;
+		this.items = items;
+	}
+
 	public Flux(String link) {
 		this.link=link;
 		 Item item=null;
@@ -48,7 +66,6 @@ public class Flux {
 	        for (SyndEntry entry:entries) {
 	        item=new Item(this.link, entry.getTitle().trim(), entry.getDescription().getValue().trim(), 
 	        		entry.getUri().trim(), entry.getPublishedDate());
-	        System.out.println(entry.getPublishedDate());
 	        this.items.add(item);
 	            }
 	        } 

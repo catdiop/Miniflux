@@ -12,12 +12,11 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
-import javax.servlet.annotation.WebServlet;
+
+import org.glassfish.jersey.server.Uri;
 
 import com.google.code.morphia.Datastore;
 import com.google.code.morphia.query.Query;
-
-import enseirb.t2.miniflux.TimerTaskServlet.RepetAction.MonAction;
 
 /**
  * Servlet implementation class StartUpTaskServlet
@@ -84,11 +83,10 @@ public class StartUpTask implements ServletContextListener {
 
 		public RepetAction() {
 			t = new Timer();
-			t.schedule(new MonAction(), 0, 24*60*60/2);
+			t.schedule(new MonAction(), 0, 8*3600*1000);
 		}
 
 		class MonAction extends TimerTask {
-			int nbrRepetitions = 3;
 
 			public void run() {
 				Datastore ds=ConnectToDatabase.connect();

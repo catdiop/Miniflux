@@ -20,6 +20,8 @@ public class MinifluxApplication extends Application {
 	Set<Class<?>> classes = new HashSet<>();
 	// ajouter la ressource a la liste
 	classes.add(FluxResource.class);
+	classes.add(UserResource.class);
+	classes.add(ItemResource.class);
 	return classes;
 	}
 }

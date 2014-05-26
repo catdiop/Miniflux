@@ -19,11 +19,11 @@ import com.sun.syndication.io.XmlReader;
 @Entity("flux")
 public class Flux {
 	@Id ObjectId id;
+	@Transient
 	private String website;
 	private String link;       //lien vers le flux
 	@Transient
 	private List<Item> items;  //les differents articles du flux
-	
 	
 	public String getWebsite() {
 		return website;
@@ -47,7 +47,7 @@ public class Flux {
 	}
 
 	public Flux(String link) {
-		this.link=link;
+		 this.link=link;
 		 Item item=null;
 	     this.items=new LinkedList<Item>();
 		 URL url  = null;    //url du flux rss
